@@ -1,0 +1,27 @@
+.Nav{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 95%;
+      margin: 0 auto;
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      left: 2%;
+      ul{
+            display: flex;
+            gap: 30px;
+            list-style-type: none;
+            padding: 10px 0;
+            li{
+                  padding: 10px 0;
+                  a{
+                        text-decoration: none;
+                        color: rgb(255, 255, 255);
+                        padding: 15px 0;
+                        font-size: 14px;
+                  }
+
+            }
+      }
+}
