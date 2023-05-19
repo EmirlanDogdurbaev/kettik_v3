@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import cl from "./Nav.module.scss";
 const Nav = () => {
+  const location = useLocation();
   return (
     <nav className={cl.Nav}>
       <div>
@@ -17,8 +18,13 @@ const Nav = () => {
           <Link to="/tours"> Tours</Link>
         </li>
       </ul>
-
-      <Link to="/book">Book</Link>
+      {location.pathname === "/book" ? (
+        <Link to="/book" style={{ color: "green" }}>
+          Book
+        </Link>
+      ) : (
+        <Link to="/book">Book</Link>
+      )}
     </nav>
   );
 };
