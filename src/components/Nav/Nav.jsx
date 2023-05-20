@@ -5,25 +5,27 @@ const Nav = () => {
   return (
     <nav className={cl.Nav}>
       <div>
-        <h2>KETTIK</h2>
+        <h2 style={{color:"white"}}>KETTIK</h2>
       </div>
       <ul>
         <li>
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/about"> About us</Link>
+          <Link to="/about">About us</Link>
         </li>
         <li>
-          <Link to="/tours"> Tours</Link>
+          <Link to="/tours">Tours</Link>
         </li>
       </ul>
       {location.pathname === "/book" ? (
-        <Link to="/book" style={{ color: "green" }}>
+        <Link to="/book" style={{ color: "green" }} className={cl.button}>
           Book
         </Link>
       ) : (
-        <Link to="/book">Book</Link>
+        <Link to="/book" className={cl.button} style={{ color: " black" }}>
+          Book
+        </Link>
       )}
     </nav>
   );

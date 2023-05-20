@@ -1,111 +1,37 @@
-import { useRef } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import cl from "./TourCards.module.scss";
 
 const TourCards = () => {
-  const { id } = useRef();
+  const [tours, setTours] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8081/tours")
+      .then(response => {
+        setTours(response.data);
+      })
+      .catch(error => {
+        console.error("Ошибка при получении данных туров:", error);
+      });
+  }, []);
+
   return (
     <div className={cl.TourCards}>
-      <div className={cl.cont}>
-        <img
-          src="https://cdn.unenvironment.org/2022-09/nicolai-kramer-unsplash.jpg"
-          alt="mou"
-          width={400}
-        />
-
-        <div>
-          <h3>Son-Kol</h3>
-          <p>
-            With a new design approach for flexible use: from a dinner for two
-            to a big celebration.
-          </p>
-          <p>1345$</p>
-          <span>
-            <Link to={`/tours/${id}`}>Learn more</Link>
-            <Link to={"/book"}>book now</Link>
-          </span>
+      {tours.map((tour) => (
+        <div className={cl.cont} key={tour.id}>
+          <img src={tour.image} alt={tour.title} width={400} />
+          <div>
+            <h3>{tour.title}</h3>
+            <p>{tour.miniTitle}</p>
+            <p>{tour.price}</p>
+            <span>
+              <Link to={`/tours/${tour.id}`}>Learn more</Link>
+              <Link to={"/book"}>book now</Link>
+            </span>
+          </div>
         </div>
-      </div>
-      <div className={cl.cont}>
-        <img
-          src="https://cdn.unenvironment.org/2022-09/nicolai-kramer-unsplash.jpg"
-          alt="mou"
-          width={400}
-        />
-        <div>
-          <h3>Son-Kol</h3>
-          <p>Lorem, ipsum.</p>
-          <p>price</p>
-          <span>
-            <Link to={`/tours/${id}`}>Learn more</Link>
-            <Link to={"/book"}>book now</Link>
-          </span>
-        </div>
-      </div>
-      <div className={cl.cont}>
-        <img
-          src="https://cdn.unenvironment.org/2022-09/nicolai-kramer-unsplash.jpg"
-          alt="mou"
-          width={400}
-        />
-        <div>
-          <h3>Son-Kol</h3>
-          <p>Lorem, ipsum.</p>
-          <p>price</p>
-          <span>
-            <Link to={`/tours/${id}`}>Learn more</Link>
-            <Link to={"/book"}>book now</Link>
-          </span>
-        </div>
-      </div>
-      <div className={cl.cont}>
-        <img
-          src="https://cdn.unenvironment.org/2022-09/nicolai-kramer-unsplash.jpg"
-          alt="mou"
-          width={400}
-        />
-        <div>
-          <h3>Son-Kol</h3>
-          <p>Lorem, ipsum.</p>
-          <p>price</p>
-          <span>
-            <Link to={`/tours/${id}`}>Learn more</Link>
-            <Link to={"/book"}>book now</Link>
-          </span>
-        </div>
-      </div>
-      <div className={cl.cont}>
-        <img
-          src="https://cdn.unenvironment.org/2022-09/nicolai-kramer-unsplash.jpg"
-          alt="mou"
-          width={400}
-        />
-        <div>
-          <h3>Son-Kol</h3>
-          <p>Lorem, ipsum.</p>
-          <p>price</p>
-          <span>
-            <Link to={`/tours/${id}`}>Learn more</Link>
-            <Link to={"/book"}>book now</Link>
-          </span>
-        </div>
-      </div>{" "}
-      <div className={cl.cont}>
-        <img
-          src="https://cdn.unenvironment.org/2022-09/nicolai-kramer-unsplash.jpg"
-          alt="mou"
-          width={400}
-        />
-        <div>
-          <h3>Son-Kol</h3>
-          <p>Lorem, ipsum.</p>
-          <p>price</p>
-          <span>
-            <Link to={`/tours/${id}`}>Learn more</Link>
-            <Link to={"/book"}>book now</Link>
-          </span>
-        </div>
-      </div>
+      ))}
     </div>
   );
 };
