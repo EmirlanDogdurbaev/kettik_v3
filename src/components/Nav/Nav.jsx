@@ -2,10 +2,11 @@ import { Link, useLocation } from "react-router-dom";
 import cl from "./Nav.module.scss";
 const Nav = () => {
   const location = useLocation();
+ 
   return (
-    <nav className={cl.Nav}>
+    <nav className={cl.Nav} >
       <div>
-        <h2 style={{color:"white"}}>KETTIK</h2>
+        <h2 style={{ color: "white" }}>KETTIK</h2>
       </div>
       <ul>
         <li>

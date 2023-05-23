@@ -5,6 +5,13 @@ import "./BookFrom.scss";
 
 const BookForm = () => {
   const [numberOfPersons, setNumberOfPersons] = useState(1);
+  const [formValues, setFormValues] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    tourName: null,
+    date: ""
+  });
   const options = [
     { value: "Ala-Archa", label: "Ala-Archa" },
     { value: "Alamedin", label: "Alamedin" },
@@ -38,33 +45,61 @@ const BookForm = () => {
     const email = form.email.value;
     const phone = form.phone.value;
     const tourName = form.tourName.value;
-    const data = form.date.value;
-    console.log(tourName, "axaax")
+    const date = form.date.value;
+    console.log(tourName, "axaax");
     const formData = {
       name,
       email,
       phone,
       numberOfPersons,
-      data,
-      tourName
-      
+      date,
+      tourName,
     };
     axios
       .post("http://localhost:8081/bookings/book", formData)
       .then((response) => {
         console.log(response.data, "axaxa");
+        // Clear form fields after successful submission
+        setFormValues({
+          name: "",
+          email: "",
+          phone: "",
+          tourName: null,
+          date: ""
+        });
       })
       .catch((error) => {
-        // Обработка ошибок
         console.error(error);
       });
+  };
+
+  const handleFormChange = (event) => {
+    const { name, value } = event.target;
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
+  };
+
+  const handleTourSelect = (selectedOption) => {
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      tourName: selectedOption,
+    }));
   };
 
   return (
     <form className="book" onSubmit={handleSubmit}>
       <label htmlFor="name">
         <h5 className="title">Name and surname of the contact person</h5>
-        <input id="name" type="text" placeholder="Ваше имя" name="name" />
+        <input
+          id="name"
+          type="text"
+          placeholder="Ваше имя"
+          name="name"
+          value={formValues.name}
+          onChange={handleFormChange}
+        />
       </label>
       <label htmlFor="email">
         <h5 className="title">Email</h5>
@@ -73,6 +108,8 @@ const BookForm = () => {
           type="email"
           placeholder="example@gmail.com"
           name="email"
+          value={formValues.email}
+          onChange={handleFormChange}
         />
       </label>
       <label htmlFor="phone">
@@ -82,6 +119,8 @@ const BookForm = () => {
           type="text"
           placeholder="+996500023120"
           name="phone"
+          value={formValues.phone}
+          onChange={handleFormChange}
         />
       </label>
       <div className="count">
@@ -98,15 +137,23 @@ const BookForm = () => {
       </div>
       <aside>
         <h4 className="title">Select a tour</h4>
-        <Select options={options} styles={customStyles} name="tourName" />
+        <Select
+          options={options}
+          styles={customStyles}
+          name="tourName"
+          value={formValues.tourName}
+          onChange={handleTourSelect}
+        />
       </aside>
       <label htmlFor="date">
         <h5 className="title">Дата поездки</h5>
         <input
           id="date"
           type="date"
-          name="birthdate"
+          name="date"
           placeholder="+996500023120"
+          value={formValues.date}
+          onChange={handleFormChange}
         />
       </label>
       <button className="book_btn" type="submit">
