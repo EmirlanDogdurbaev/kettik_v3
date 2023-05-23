@@ -52,7 +52,6 @@ const BookForm = () => {
     axios
       .post("http://localhost:8081/bookings/book", formData)
       .then((response) => {
-        // Обработка успешного ответа
         console.log(response.data, "axaxa");
       })
       .catch((error) => {

@@ -20,7 +20,7 @@ const TourCards = () => {
     <div className={cl.TourCards}>
       {tours.map((tour) => (
         <div className={cl.cont} key={tour.id}>
-          <img src={tour.image} alt={tour.title} width={400} />
+          <img src={tour.image2} alt={tour.title} width={400}  />
           <div>
             <h3>{tour.title}</h3>
             <p>{tour.miniTitle}</p>

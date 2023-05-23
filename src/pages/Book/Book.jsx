@@ -11,6 +11,7 @@ const Book = () => {
         </div>
       </section>
       <section className="up">
+        {/* <h2 style={{color:"black"}}>Nurzada</h2> */}
         <BookForm key="book-form" />
       </section>
     </div>
