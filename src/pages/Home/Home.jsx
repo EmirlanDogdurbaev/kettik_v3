@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Galery from "../../components/Galery/Galery";
 import Header from "../../components/Header/Header";
 import Slider from "../../components/Slider/Slider";
@@ -6,7 +7,7 @@ import cl from "./Home.module.scss";
 const Home = () => {
   return (
     <>
-      <Header/>
+      <Header />
       <section className={cl.Hello}>
         <div>
           <h2>Hello, dear friend!</h2>
@@ -15,7 +16,9 @@ const Home = () => {
             Kyrgyzstan, and like no one else we know the most beautiful places
             of our country.
           </p>
-          <button>Read more</button>
+          <button>
+            <Link to={"/about"}>Read more</Link>
+          </button>
         </div>
       </section>
 
@@ -35,15 +38,15 @@ const Home = () => {
       <section className={cl.toursFor}>
         <h1>TOURS FOR YOU</h1>
         <div className={cl.toursForYou}>
-          <article>
+          <Link to={"/tours"}>
             <img
               src="https://thumb.tildacdn.com/tild3337-6664-4538-b230-383139313266/-/format/webp/IMG_5265.JPG"
               alt="img asdasda"
             />
             <h5>multi-day tours</h5>
             <p>When the view of an image is influenced by the lights.</p>
-          </article>
-          <article>
+          </Link>
+          <Link to={"/tours"}>
             <img
               src="https://thumb.tildacdn.com/tild3337-6664-4538-b230-383139313266/-/format/webp/IMG_5265.JPG"
               alt="img asdasda"
@@ -53,30 +56,29 @@ const Home = () => {
               Visual communication takes place through pictures, graphs, and
               charts.
             </p>
-          </article>
-          <article>
+          </Link>
+          <Link to={"/tours"}>
             <img
               src="https://thumb.tildacdn.com/tild3337-6664-4538-b230-383139313266/-/format/webp/IMG_5265.JPG"
               alt="img asdasda"
             />
             <h5>city tours</h5>
             <p>The view of images in the critical perspective.</p>
-          </article>
-          <article>
+          </Link>
+          <Link to={"/individual"}>
             <img
               src="https://thumb.tildacdn.com/tild3337-6664-4538-b230-383139313266/-/format/webp/IMG_5265.JPG"
               alt="img asdasda"
             />
             <h5>Individual tours</h5>
             <p>The view of images in the critical perspective.</p>
-          </article>
+          </Link>
         </div>
       </section>
 
       <section>
         <Slider />
       </section>
-
       <section>
         <Galery />
       </section>

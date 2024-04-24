@@ -14,13 +14,12 @@ const About = () => {
           width={550}
         />
         <aside>
-          <h4>О нашей компании</h4>
-          <p>Ключевые слова о компании</p>
+          <h4>About our company</h4>
+          <p>Keywords about the company</p>
           <span></span>
-          <p>история возникновения кеттик</p>
+          <p>history of the origins of the kettle</p>
         </aside>
       </section>
-
       <ProgressBar progress={progress} />
     </div>
   );

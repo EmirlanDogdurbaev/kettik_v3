@@ -10,7 +10,7 @@ const BookForm = () => {
     email: "",
     phone: "",
     tourName: null,
-    date: ""
+    data: ""
   });
   const options = [
     { value: "Ala-Archa", label: "Ala-Archa" },
@@ -45,14 +45,14 @@ const BookForm = () => {
     const email = form.email.value;
     const phone = form.phone.value;
     const tourName = form.tourName.value;
-    const date = form.date.value;
+    const data = form.data.value;
     console.log(tourName, "axaax");
     const formData = {
       name,
       email,
       phone,
       numberOfPersons,
-      date,
+      data,
       tourName,
     };
     axios
@@ -65,7 +65,7 @@ const BookForm = () => {
           email: "",
           phone: "",
           tourName: null,
-          date: ""
+          data: ""
         });
       })
       .catch((error) => {
@@ -145,14 +145,14 @@ const BookForm = () => {
           onChange={handleTourSelect}
         />
       </aside>
-      <label htmlFor="date">
+      <label htmlFor="data">
         <h5 className="title">Дата поездки</h5>
         <input
-          id="date"
+          id="data"
           type="date"
-          name="date"
+          name="data"
           placeholder="+996500023120"
-          value={formValues.date}
+          value={formValues.data}
           onChange={handleFormChange}
         />
       </label>

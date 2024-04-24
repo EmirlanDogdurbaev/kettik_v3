@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Virtual, Navigation, Pagination } from "swiper";
@@ -7,10 +7,40 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "./style.css";
 import classes from "./Slider.module.scss";
+import axios from "axios";
 SwiperCore.use([Virtual, Navigation, Pagination]);
 
 const Slider = () => {
-  const id = 1;
+  const [tours, setTours] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8081/tours")
+      .then((response) => {
+        setTours(response.data);
+      })
+      .catch((error) => {
+        console.error("Ошибка при получении данных туров:", error);
+      });
+  }, []);
+
+  console.log(tours);
+
+  const tour = tours.map((item) => {
+    return (
+      <SwiperSlide key={item.id}>
+        <article
+          className={classes.TourCard}
+          style={{ backgroundImage: `url(${item.image})`, backgroundSize:"cover" }}
+        >
+          <div>
+            <h1>{item.title}</h1>
+            <Link to={`/tours/${item.id}`}> See more</Link>
+          </div>
+        </article>
+      </SwiperSlide>
+    );
+  });
   return (
     <>
       <Swiper
@@ -19,54 +49,7 @@ const Slider = () => {
         spaceBetween={40}
         navigation={true}
       >
-        <SwiperSlide>
-          <article className={classes.TourCard}>
-            <div>
-              <h1>Lorem, ipsum.</h1>
-              <Link to={`/tours/tour/${id}`}> See more</Link>
-            </div>
-          </article>
-        </SwiperSlide>
-        <SwiperSlide>
-          <article className={classes.TourCard}>
-            <div>
-              <h1>Lorem, ipsum.</h1>
-              <Link to={`/tour/${id}`}> See more</Link>
-            </div>
-          </article>
-        </SwiperSlide>
-        <SwiperSlide>
-          <article className={classes.TourCard}>
-            <div>
-              <h1>Lorem, ipsum.</h1>
-              <Link to={`/tours/tour/${id}`}> See more</Link>
-            </div>
-          </article>
-        </SwiperSlide>
-        <SwiperSlide>
-          <article className={classes.TourCard}>
-            <div>
-              <h1>Lorem, ipsum.</h1>
-              <Link to={`/tours/tour/${id}`}> See more</Link>
-            </div>
-          </article>
-        </SwiperSlide>
-        <SwiperSlide>
-          <article className={classes.TourCard}>
-            <div>
-              <h1>Lorem, ipsum.</h1>
-              <Link to={`/tours/tour/${id}`}> See more</Link>
-            </div>
-          </article>
-        </SwiperSlide>
-        <SwiperSlide>
-          <article className={classes.TourCard}>
-            <div>
-              <h1>Lorem, ipsum.</h1>
-              <Link to={`/tours/tour/${id}`}> See more</Link>
-            </div>
-          </article>
-        </SwiperSlide>
+       {tour}
       </Swiper>
     </>
   );

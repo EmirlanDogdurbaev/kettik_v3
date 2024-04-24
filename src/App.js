@@ -5,6 +5,7 @@ import OneTour from "./components/TourCards/OneTour/OneTour";
 import About from "./pages/About/About";
 import Book from "./pages/Book/Book";
 import Home from "./pages/Home/Home";
+import Individual from "./pages/Individual/Individual";
 import Tour from "./pages/Tour/Tour";
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/tours" element={<Tour />} />
         <Route path="/tours/:id" element={<OneTour />} />
+        <Route path="/tours" element={<Tour />} />
+        <Route path="/individual" element={<Individual />} />
       </Routes>
     </div>
   );

@@ -43,6 +43,22 @@ const Header = () => {
             mountain climbers. But the majesty does
           </h3>
         </div>
+      ) : location.pathname === "/individual" ? (
+        <div
+          className={cl.header}
+          style={{
+            backgroundImage:
+              "url('https://thumb.tildacdn.com/tild3832-3962-4438-b933-313839393566/-/format/webp/DJI_0968_2.JPG')",
+          }}
+        >
+          <h1
+            style={{
+              fontSize: "65px",
+            }}
+          >
+            INDIVIDUAL TOURS
+          </h1>
+        </div>
       ) : null}
     </header>
   );
