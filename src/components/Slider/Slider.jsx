@@ -31,7 +31,10 @@ const Slider = () => {
       <SwiperSlide key={item.id}>
         <article
           className={classes.TourCard}
-          style={{ backgroundImage: `url(${item.image})`, backgroundSize:"cover" }}
+          style={{
+            backgroundImage: `url(${item.image})`,
+            backgroundSize: "cover",
+          }}
         >
           <div>
             <h1>{item.title}</h1>
@@ -49,7 +52,7 @@ const Slider = () => {
         spaceBetween={40}
         navigation={true}
       >
-       {tour}
+        {tour}
       </Swiper>
     </>
   );
