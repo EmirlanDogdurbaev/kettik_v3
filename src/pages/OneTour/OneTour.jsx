@@ -26,6 +26,7 @@ const OneTour = () => {
             alt="this is a best  in the world"
             width={510}
             height={600}
+            loading={"lazy"}
           />
           <div
             style={{
@@ -34,9 +35,9 @@ const OneTour = () => {
               gap: "2px",
             }}
           >
-            <img src={data.image2} alt="" width={170} height={150} />
-            <img src={data.image3} alt="" width={170} height={150} />
-            <img src={data.image} alt="" width={170} height={150} />
+            <img src={data.image2} alt="" width={170} height={150} loading={"eager"}/>
+            <img src={data.image3} alt="" width={170} height={150} loading={"lazy"} />
+            <img src={data.image} alt="" width={170} height={150}  loading={"lazy"}/>
           </div>
         </section>
         <div className={cl.info_tour}>
